@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harika Vajha | Portfolio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #eaeaea;
+      line-height: 1.6;
+      transition: background 0.5s, color 0.5s;
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(20, 20, 20, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    }
+    .logo {
+      color: #ccc;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .logo:hover {
+      color: #aaa;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      position: relative;
+    }
+    .nav-links a::after, .logo::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0;
+      height: 2px;
+      background-color: #999;
+      transition: width 0.3s;
+    }
+    .nav-links a:hover::after, .logo:hover::after {
+      width: 100%;
+    }
+    section {
+      padding: 100px 20px 60px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 {
+      color: #ffffff;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+    .project, .publication, .achievement {
+      margin-bottom: 20px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #1c1c1c;
+      color: #ccc;
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    .intro-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .intro-section img {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+      border-radius: 25px;
+      object-fit: cover;
+      border: 4px solid #333;
+    }
+    .intro-content { flex: 1; }
+    .intro-heading {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .typewriter-text {
+      font-size: 1.4rem;
+      color: #8e1f1f;
+      font-weight: bold;
+      min-height: 30px;
+      margin-bottom: 20px;
+    }
+    .intro-description {
+      font-size: 1rem;
+      color: #ccc;
+      max-width: 600px;
+      margin-bottom: 20px;
+    }
+    .button-group {
+      display: flex;
+      gap: 15px;
+    }
+    .button-group a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #000;
+      border: 1px solid #333;
+      color: #999;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background 0.3s;
+    }
+    .button-group a:hover {
+      background-color: #111;
+      color: #eee;
+    }
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+      justify-content: center;
+    }
+    .about-content img {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      object-fit: cover;
+      border: 4px solid #444;
+    }
+    .about-content p { flex: 1; }
+    .skill-block {
+      background: #1a1a1a;
+      padding: 15px 20px;
+      border-radius: 12px;
+      color: #eee;
+      border: 1px solid #333;
+    }
+    .skill-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .skill-bar {
+      background: #333;
+      height: 8px;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background-color: #888;
+      border-radius: 4px;
+    }
+    .menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: #ccc;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(20, 20, 20, 0.95);
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    z-index: 1001;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.metrics-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: nowrap;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.metric {
+  flex: 1;
+  min-width: 180px;
+}
+
+.metric h3 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #f9847e;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.metric p {
+  font-size: 0.95rem;
+  color: #aaa;
+  max-width: 220px;
+  margin: auto;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.project-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid #333;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.project-item:hover {
+  transform: scale(1.02);
+}
+
+.project-item img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 14px;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(15, 15, 15, 0.85);
+  color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  padding: 20px;
+  text-align: center;
+  transition: opacity 0.4s ease;
+}
+
+.project-item:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-overlay h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #f9847e;
+}
+
+.project-overlay p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+
+    @media (max-width: 768px) {
+      nav { flex-direction: column; gap: 10px; }
+      .intro-section { flex-direction: column; text-align: center; }
+      .intro-section img { max-width: 300px; }
+      .intro-heading { font-size: 2rem; }
+      .typewriter-text { font-size: 1.1rem; }
+    }
+    @media (max-width: 600px) {
+  .metrics-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .metric h3 {
+    font-size: 1.8rem;
+  }
+
+  .metric p {
+    font-size: 0.9rem;
+  }
+}
+
+  </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-vWq1K3J0AEaW+o6kAAO7M3rNZBc7QK6E+MkFsIDTVKxzZmBjWakIQSN8CtQwE3sRC2PiHHTR8J2p0gktWgAA1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+  <nav>
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <i class="fas fa-bars"></i>
+    </div>    
+    <a href="#home" class="logo">Harika Vajha</a>
+    <div class="nav-links">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#publications">Publications</a>
+      <a href="#HireMe">ContactMe</a>
+      <a href="https://docs.google.com/document/d/10peIPylWFmCnQy8CYDAuBe1YN057zO68sLWYWGf5hSg/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
+        Resume
+      </a>
+    </div>
+  </nav>
+
+  <section id="home">
+    <div class="intro-section">
+      <div style="flex: 1; display: flex; justify-content: center;">
+        <img src="Harika.jpeg" alt="Harika Vajha">
+      </div>
+      <div class="intro-content" style="flex: 1; padding: 20px;">
+        <div class="intro-heading">Hi, I am Harika Vajha</div>
+        <div class="typewriter-text">
+          <span id="typed-text"></span>
+        </div>
+        <div class="intro-description">
+          I'm a Machine Learning Engineer obsessed with turning data into real-world impact. From building smart emergency response systems to crafting game-personalization engines and a voice+mask-based attendance system at IIT Patna — I love bringing AI to life. Research, ML, and data science aren't just what I do — they're what I live for.
+          <br>🏆 Smart India Hackathon Winner | Google DSC Lead | Microsoft Student Partner | OpenAI Forum Member
+
+
+        </div>
+          
+          <!-- Ensure Font Awesome is loaded -->
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-vWq1K3J0AEaW+o6kAAO7M3rNZBc7QK6E+MkFsIDTVKxzZmBjWakIQSN8CtQwE3sRC2PiHHTR8J2p0gktWgAA1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <div class="metrics-container">
+            <div class="metric">
+              <h3><span class="count" data-target="91.5">0</span>%</h3>
+              <p>Accuracy in ML models</p>
+            </div>
+            <div class="metric">
+              <h3><span class="count" data-target="20">0</span>%</h3>
+              <p>Improved Emergency ETA </p>
+            </div>
+            <div class="metric">
+              <h3><span class="count" data-target="1000">0</span>+</h3>
+              <p>Students Empowered through Training with Google DSC & Microsoft</p>
+            </div>
+          </div>
+          
+        </div>
+  </section>
+
+  <section id="experience">
+    <h2>Experience & Education Timeline</h2>
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+  
+      <!-- 2023 - Present (Overlap) -->
+      <div class="timeline-item left long">
+        <div class="content">
+          <h3>REDLABS – ML Engineer</h3>
+          <span>2023 - Present</span>
+          <p>Engineered real-time ML systems, as measured by a 20% ETA improvement, by deploying geospatial agents on IoT data.</p>
+        </div>
+      </div>
+      <div class="timeline-item right long">
+        <div class="content">
+          <h3>Indiana University – MS Applied Data Science</h3>
+          <span>2023 - 2024</span>
+          <p>Applied ML skills in production, as measured by project outcomes and a 3.8 GPA, through hands-on coursework and deployment.</p>
+        </div>
+      </div>
+  
+      <!-- 2021 - 2022 -->
+      <div class="timeline-item left">
+        <div class="content">
+          <h3>IVY Comptech – ML Engineer</h3>
+          <span>2021 - 2022</span>
+          <p>Boosted CTR by 17%, as measured in A/B tests, by building and optimizing large-scale recommendation models.</p>
+        </div>
+      </div>
+  
+      <!-- 2020 - 2021 -->
+      <div class="timeline-item left">
+        <div class="content">
+          <h3>IIT Patna – ML Engineer</h3>
+          <span>2020 - 2021</span>
+          <p>Built dual-model attendance system, as measured by 91.5% and 87% accuracy, using CNN and TDNN architectures.</p>
+        </div>
+      </div>
+  
+      <!-- 2017 - 2021 (Longer block for 4 years) -->
+      <div class="timeline-item right long">
+        <div class="content">
+          <h3>Jawaharlal Nehru Technology University – B.Tech Computer Science</h3>
+          <span>2017 - 2021</span>
+          <p>Built strong CS foundations, as measured by a 9.2 GPA, by excelling in algorithms, systems, and ML projects.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <style>
+    .timeline-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px 0;
+    }
+    .timeline-line {
+      position: absolute;
+      width: 4px;
+      background: #666;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    .timeline-item {
+      padding: 20px;
+      width: 50%;
+      position: relative;
+    }
+    .timeline-item.long .content {
+      min-height: 140px;
+    }
+    .timeline-item .content {
+      background: #1c1c1c;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      color: #eee;
+    }
+    .timeline-item h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .timeline-item span {
+      font-size: 0.9rem;
+      color: #bbb;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .timeline-item.left {
+      left: 0;
+      text-align: right;
+    }
+    .timeline-item.right {
+      left: 50%;
+    }
+    .timeline-item.left::before,
+    .timeline-item.right::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #999;
+      border: 2px solid #fff;
+      z-index: 1;
+    }
+    .timeline-item.left::before {
+      right: -10px;
+    }
+    .timeline-item.right::before {
+      left: -10px;
+    }
+
+    .project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.project-card {
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+.project-card h3 {
+  color: #ffcc70;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #ccc;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: #555;
+  background-color: #222;
+}
+
+/* Reveal animation when in view */
+.project-card.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+    @media (max-width: 768px) {
+      .timeline-item {
+        width: 100%;
+        text-align: left !important;
+        padding-left: 30px;
+      }
+      .timeline-line {
+        left: 20px;
+      }
+      .timeline-item.left, .timeline-item.right {
+        left: 0;
+      }
+      .timeline-item.left::before, .timeline-item.right::before {
+        left: 0;
+      }
+    }
+
+  </style>
+  
+  
+
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-rating" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;">
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div>
+          <div class="skill-title">Python</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 95%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">TensorFlow</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">PyTorch</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 70%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">SQL</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">MLOps</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div>
+          <div class="skill-title">Airflow</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 65%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">NLP</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 90%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">Time Series Forecasting</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 60%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">Recommendation Systems</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 85%;"></div></div>
+        </div>
+        <div>
+          <div class="skill-title">Generative AI</div>
+          <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-gallery">
+      <a href="https://github.com/VAJHAHARIKA/AccentCoach" class="project-item" target="_blank">
+        <img src="accent.jpeg" alt="Accent Coach">
+        <div class="project-overlay">
+          <h3>Accent Coach</h3>
+          <p>Real-time NLP feedback for American English pronunciation.</p>
+        </div>
+      </a>
+      <a href="https://github.com/VAJHAHARIKA/crane-emergency" class="project-item" target="_blank">
+        <img src="emer.jpeg" alt="Crane Emergency">
+        <div class="project-overlay">
+          <h3>Crane Emergency Optimization</h3>
+          <p>Smart pathfinding for firefighters using ArcGIS + NLP.</p>
+        </div>
+      </a>
+      <a href="https://github.com/VAJHAHARIKA/LieDetectionUsingDL" class="project-item" target="_blank">
+        <img src="lie.jpeg" alt="Lie Detection">
+        <div class="project-overlay">
+          <h3>Lie Detection System</h3>
+          <p>TDNN-based speech analysis system built for hackathon.</p>
+        </div>
+      </a>
+      <!-- Add more project blocks as needed -->
+    </div>
+  </section>
+  
+  
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="publication-grid">
+      <a href="https://www.amazon.com/Beyond-Classical-course-Quantum-Computing/dp/B0848QQV41" target="_blank" class="publication-card">
+        <div class="ribbon">2024</div>
+        <div class="publication-front">
+          <strong>Beyond Classical- A crash course on quantum computing</strong>
+        </div>
+        <div class="publication-back">
+          <p>This book is intended to be a course material for a university professional course on quantum computing. It gives students both theoretical and practical experience using Qiskit and IBMQ. This book is a 10-week course requiring at least 2 hours per week.</p>
+        </div>
+      </a>
+  
+      <a href="https://link.springer.com/chapter/10.1007/978-981-16-8862-1_24" target="_blank" class="publication-card">
+        <div class="ribbon">2022</div>
+        <div class="publication-front">
+          <strong>ICCCES'22 Paper- COPD analysis</strong>
+        </div>
+        <div class="publication-back">
+          <p>A Data Analysis Pipeline to Explore Demographic Information for Identifying COPD Patients.</p>
+        </div>
+      </a>
+    </div>
+  </section>
+  
+  <style>
+    #publications {
+      text-align: center;
+      padding: 60px 20px;
+    }
+  
+    .publication-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+    }
+  
+    .publication-card {
+      position: relative;
+      width: 280px;
+      height: 280px;
+      perspective: 1000px;
+      text-decoration: none;
+    }
+  
+    .publication-card .publication-front,
+    .publication-card .publication-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: #1e1e1e;
+      color: #fff;
+      border-radius: 16px;
+      border: 1px solid #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      transition: transform 0.8s ease;
+      padding: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      font-size: 1.1rem;
+    }
+  
+    .publication-front {
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+  
+    .publication-back {
+      transform: rotateY(180deg);
+      font-size: 0.95rem;
+      line-height: 1.4;
+      text-align: center;
+    }
+  
+    .publication-card:hover .publication-front {
+      transform: rotateY(180deg);
+    }
+  
+    .publication-card:hover .publication-back {
+      transform: rotateY(0);
+    }
+  
+    .ribbon {
+      position: absolute;
+      top: 12px;
+      right: -8px;
+      background: #8e1f1f;
+      color: #fff;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      transform: rotate(45deg);
+      z-index: 2;
+      border-radius: 4px;
+    }
+  
+    @media (max-width: 768px) {
+      .publication-card {
+        width: 90%;
+        height: 240px;
+      }
+    }
+  </style>
+  
+  <section id="HireMe" class="contact-section">
+    <h2 class="contact-title">Let’s Build Something Incredible</h2>
+    <p class="contact-subtext">Whether it’s AI magic, data wizardry, or a research collaboration — I’m all ears.</p>
+    
+    <a href="mailto:vajhaharika7@gmail.com?subject=Let's Work Together&body=Hi Harika," class="contact-button">Send Me an Email</a>
+  
+    <div class="button-group" style="display: flex; justify-content: center; gap: 15px; padding: 1cm;">
+      <a href="https://www.linkedin.com/in/harikavajha" target="_blank" style="width: 50px; height: 50px; border-radius: 12px; background-color: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #666; transition: background-color 0.3s, border-color 0.3s;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg" alt="LinkedIn" width="28" height="28" style="filter: brightness(0) invert(1); transition: filter 0.3s;">
+      </a>
+      <a href="https://github.com/VAJHAHARIKA" target="_blank" style="width: 50px; height: 50px; border-radius: 12px; background-color: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #666; transition: background-color 0.3s, border-color 0.3s;">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" width="28" height="28" style="filter: brightness(0) invert(1); transition: filter 0.3s;">
+      </a>
+      <a href="https://x.com/HarikaVajha7" target="_blank" style="width: 50px; height: 50px; border-radius: 12px; background-color: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #666; transition: background-color 0.3s, border-color 0.3s;">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X" width="28" height="28" style="filter: brightness(0) invert(1); transition: filter 0.3s;">
+      </a>
+      <a href="mailto:vajhaharika7@gmail.com" style="width: 50px; height: 50px; border-radius: 12px; background-color: #000; display: flex; align-items: center; justify-content: center; border: 1px solid #666; transition: background-color 0.3s, border-color 0.3s;">
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/gmail.svg" alt="Email" width="28" height="28" style="filter: brightness(0) invert(1); transition: filter 0.3s;">
+      </a>
+    </div>
+    
+    <style>
+      .button-group a:hover {
+        background-color: #111 !important;
+        border-color: #999 !important;
+      }
+      .button-group a:hover img {
+        filter: brightness(0.7) invert(1) !important;
+      }
+    </style>
+  </section>
+  <style>
+    .contact-section {
+      text-align: center;
+      padding: 100px 20px 80px;
+      background: #111;
+      color: #eee;
+    }
+    
+    .contact-title {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    
+    .contact-subtext {
+      font-size: 1.1rem;
+      color: #ccc;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .contact-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #8e1f1f;
+      color: #fff;
+      font-size: 1rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 12px rgba(255, 50, 50, 0.2);
+      transition: background-color 0.3s ease;
+    }
+    
+    .contact-button:hover {
+      background-color: #aa2b2b;
+    }
+    
+    .contact-socials {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+    
+    .contact-socials a {
+      color: #ccc;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+    
+    .contact-socials a:hover {
+      color: #fff;
+    }
+    </style>
+      
+
+
+  <footer>
+    <p>© 2025 Harika Vajha | Contact: vajhaharika7@gmail.com</p>
+  </footer>
+
+  <script>
+    const phrases = [
+      "Machine Learning Engineer",
+      "Data Scientist",
+      "Research Engineer"
+    ];
+
+    let i = 0, j = 0, currentPhrase = [], isDeleting = false;
+    const typedText = document.getElementById("typed-text");
+
+    function loop() {
+      typedText.innerHTML = currentPhrase.join("");
+
+      if (!isDeleting && j <= phrases[i].length) {
+        currentPhrase.push(phrases[i][j]);
+        j++;
+      }
+
+      if (isDeleting && j > 0) {
+        currentPhrase.pop();
+        j--;
+      }
+
+      if (!isDeleting && j === phrases[i].length) {
+        setTimeout(() => isDeleting = true, 1200);
+      }
+
+      if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % phrases.length;
+      }
+
+      const typingSpeed = isDeleting ? 100 : 120;
+      setTimeout(loop, typingSpeed);
+    }
+
+    loop();
+  </script>
+<script>
+  const counters = document.querySelectorAll(".count");
+  const duration = 3000; // Total animation time in ms
+
+  counters.forEach(counter => {
+    const target = +counter.getAttribute("data-target");
+    let count = 0;
+    const increment = target / (duration / 30); // slower steps
+
+    const update = () => {
+      count += increment;
+      if (count < target) {
+        counter.innerText = (Math.round(count * 10) / 10).toFixed(1);
+        requestAnimationFrame(update);
+      } else {
+        counter.innerText = target.toString().includes('.') ? target.toFixed(1) : target.toLocaleString();
+      }
+    };
+
+    update();
+  });
+</script>
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-links').classList.toggle('active');
+    }
+  </script>
+  <script>
+    const cards = document.querySelectorAll('.project-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+  
+    cards.forEach(card => observer.observe(card));
+  </script>
+  
+  
+</body>
+</html>
