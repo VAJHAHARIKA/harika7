@@ -321,6 +321,22 @@
     font-size: 0.9rem;
   }
 }
+    .wave {
+  display: inline-block;
+  animation: wave-animation 2s infinite;
+  transform-origin: 70% 70%;
+}
+
+@keyframes wave-animation {
+  0% { transform: rotate(0deg); }
+  10% { transform: rotate(14deg); }
+  20% { transform: rotate(-8deg); }
+  30% { transform: rotate(14deg); }
+  40% { transform: rotate(-4deg); }
+  50% { transform: rotate(10deg); }
+  60% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
 
   </style>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -351,7 +367,7 @@
         <img src="Harika.jpeg" alt="Harika Vajha">
       </div>
       <div class="intro-content" style="flex: 1; padding: 20px;">
-        <div class="intro-heading">Hi, I am Harika Vajha</div>
+        <div class="intro-heading">Hi, I am Harika Vajha <span class="wave">👋🏻</span></div>
         <div class="typewriter-text">
           <span id="typed-text"></span>
         </div>
